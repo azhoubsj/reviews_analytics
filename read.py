@@ -22,3 +22,10 @@ for d in data:
 print('长度小于100的资料总共有', len(new), '笔')
 print(new[0])
 print(new[1])
+
+good = []
+for d in data:
+	if 'good' in d:
+		good.append(d) #这四行 等于 good = [d for d in data if 'good' in d]
+print('含有good的资料总共有', len(good), '笔')
+print(good[0])
