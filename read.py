@@ -1,19 +1,18 @@
+import time
+import progressbar
+
+
 data = []
 count = 0
 length = 0
-
+bar = progressbar.ProgressBar(max_value=1000000)
 with open('reviews.txt', 'r') as f:
 	for line in f:
-		data.append(line.strip())
-		# length += len(data[count]) #用 length += len(line) 也可以
+		data.append(line)
+		length += len(data[count]) #用 length += len(line) 也可以
 		count += 1
-		if count % 1000 == 0:
-			print(len(data))
-
-
+		bar.update(count)
 print('档案读取完了，总共有', len(data), '笔资料')
-
-
 print('每笔资料平均长度为', length / count)
 
 new = []
@@ -32,7 +31,7 @@ print('含有good的资料总共有', len(good), '笔')
 
 
 # 文字注解
-
+start_time = time.time()
 wc = {} # word_count
 for d in data:
 	words = d.split()
@@ -45,6 +44,9 @@ for d in data:
 for word in wc:
 	if wc[word] > 1000000:
 		print(word, wc[word])
+end_time = time.time()
+print('花了', end_time - start_time, '秒')
+
 print(len(wc))
 
 while True:
